@@ -26,7 +26,7 @@ const App: React.FC = () => {
             })}
           >
             <Tab.Screen
-              name='Home'
+              name={'Home'}
               component={Home}
               options={{
                 title: '首页',
@@ -34,7 +34,7 @@ const App: React.FC = () => {
               }}
             />
             <Tab.Screen
-              name='Category'
+              name={'Category'}
               component={Category}
               options={{
                 title: '分类',
@@ -42,7 +42,7 @@ const App: React.FC = () => {
               }}
             />
             <Tab.Screen
-              name='Service'
+              name={'Service'}
               component={Service}
               options={{
                 title: '服务',
@@ -50,7 +50,7 @@ const App: React.FC = () => {
               }}
             />
             <Tab.Screen
-              name='Cart'
+              name={'Cart'}
               component={Cart}
               options={{
                 title: '购物车',
@@ -58,7 +58,7 @@ const App: React.FC = () => {
               }}
             />
             <Tab.Screen
-              name='Profile'
+              name={'Profile'}
               component={Profile}
               options={{
                 title: '我的',
