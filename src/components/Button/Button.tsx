@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './index.style';
 
-import type { GestureResponderEvent } from 'react-native';
+import type { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export const BtnTypeEnum = {
   Default: 'default',
@@ -16,48 +16,51 @@ export const BtnTypeEnum = {
   Cancel: 'cancel',
 } as const;
 
-type BtnType = (typeof BtnTypeEnum)[keyof typeof BtnTypeEnum];
+type TBtnType = (typeof BtnTypeEnum)[keyof typeof BtnTypeEnum];
 
-interface ButtonProps {
+interface IButtonProps {
   children: React.ReactNode;
-  type: BtnType;
-  disabled?: boolean;
-  loading?: boolean;
-  containerStyle?: any;
-  style?: any;
-  textStyle?: any;
+  type: TBtnType;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   onPress?: (event: GestureResponderEvent) => void;
-  bold?: boolean;
-  iconProps?: any;
+  isBold?: boolean;
+  iconProps?: Record<string, unknown>;
   isCustom?: boolean;
 }
 
-const Button = (props: ButtonProps) => {
+const Button = (props: IButtonProps): React.ReactElement => {
   const {
     children,
     type,
-    disabled,
-    loading,
+    isDisabled,
+    isLoading,
     onPress,
     style,
     textStyle,
-    bold,
+    isBold,
     iconProps,
     isCustom,
   } = props;
   const typeStyle = type ? styles[type] : styles[BtnTypeEnum.Default];
   const typeTextStyle = type ? styles[`${type}Text`] : styles[`${BtnTypeEnum.Default}Text`];
-  const couldPress = !loading && !disabled;
+  const canPress = !isLoading && !isDisabled;
+
+  const handlePress = canPress && onPress ? throttle(onPress, 1000) : undefined;
+
   return (
     <TouchableOpacity
-      activeOpacity={couldPress ? 0.2 : 1}
+      activeOpacity={canPress ? 0.2 : 1}
       style={isCustom && styles.customStyle}
-      onPress={couldPress ? (onPress ? throttle(onPress, 1000) : undefined) : undefined}
+      onPress={handlePress}
     >
-      <View style={[styles.button, disabled && styles.disabled, typeStyle, style]}>
+      <View style={[styles.button, isDisabled && styles.disabled, typeStyle, style]}>
         {iconProps && null}
-        {loading ? <ActivityIndicator color='#E0E2E7' size={20} style={styles.loading} /> : null}
-        <Text style={[styles.text, typeTextStyle, bold && styles.boldText, textStyle]}>
+        {isLoading ? <ActivityIndicator color='#E0E2E7' size={20} style={styles.loading} /> : null}
+        <Text style={[styles.text, typeTextStyle, isBold && styles.boldText, textStyle]}>
           {children ?? '确定'}
         </Text>
       </View>

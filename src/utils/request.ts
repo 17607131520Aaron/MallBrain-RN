@@ -22,14 +22,14 @@ interface IErrorMessage {
 interface IRequestConfig<T> {
   url: string;
   data?: T;
-  handleRaw?: boolean;
+  isHandleRaw?: boolean;
   timeout?: number;
   cancelToken?: AbortController;
   retry?: number;
 }
 
 // 统一错误处理
-const handleError = (status: number, data: IResponse) => {
+const handleError = (status: number, data: IResponse): void => {
   const errorMessages: Record<number, IErrorMessage> = {
     401: {
       message: '提示',
@@ -69,12 +69,12 @@ const handleError = (status: number, data: IResponse) => {
 };
 
 // 统一响应处理
-const parse = <R>(res: AxiosResponse, params: { handleRaw: boolean }): R => {
+const parse = <R>(res: AxiosResponse, params: { isHandleRaw: boolean }): R => {
   const { status, data } = res;
-  const { handleRaw } = params;
+  const { isHandleRaw } = params;
 
   if (status === 200) {
-    if (handleRaw) {
+    if (isHandleRaw) {
       return data as R;
     }
     if (data.code === 0) {
@@ -148,7 +148,7 @@ const requestMethod = async <T, R>(
 
   while (attempts <= retry) {
     try {
-      const { url, data, handleRaw, timeout = 5000, cancelToken } = config;
+      const { url, data, isHandleRaw = false, timeout = 5000, cancelToken } = config;
       const response = await instance({
         method,
         url,
@@ -156,7 +156,7 @@ const requestMethod = async <T, R>(
         timeout,
         signal: cancelToken?.signal,
       });
-      return parse<R>(response, { handleRaw: !!handleRaw });
+      return parse<R>(response, { isHandleRaw });
     } catch (error) {
       attempts++;
       if (attempts > retry) {

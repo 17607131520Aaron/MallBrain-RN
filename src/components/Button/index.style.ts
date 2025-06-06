@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   disabled: {
-    backgroundColor: '#B2B4BF',
+    backgroundColor: COLORS.disabled,
   },
   cancel: {
     backgroundColor: COLORS.white,

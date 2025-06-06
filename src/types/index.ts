@@ -1,9 +1,5 @@
-/**
- * 通用类型定义
- */
-
 // 通用响应类型
-export interface ApiResponse<T = any> {
+export interface IApiResponse<T = unknown> {
   code: number;
   message: string;
   data: T;
@@ -11,7 +7,7 @@ export interface ApiResponse<T = any> {
 }
 
 // 分页数据类型
-export interface PaginatedData<T = any> {
+export interface IPaginatedData<T = unknown> {
   list: T[];
   total: number;
   pageSize: number;
@@ -20,8 +16,8 @@ export interface PaginatedData<T = any> {
 }
 
 // 分页请求参数
-export interface PaginationParams {
+export interface IPaginationParams {
   pageSize?: number;
   current?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }

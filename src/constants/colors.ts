@@ -79,4 +79,5 @@ export const COLORS = {
   skyBlueBg: '#EBF5FF',
   primary40: '#4062E5',
   scanOrange: '#E16647',
+  disabled: '#B2B4BF', // 按钮禁用状态颜色
 } as const;
