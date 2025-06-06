@@ -1,5 +1,5 @@
 import request, { InternalAxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import { showMessage, MessageType } from './message';
+// import { showMessage, MessageType } from './message';
 
 // 响应数据接口
 interface IResponse<T = unknown> {
@@ -52,10 +52,10 @@ const handleError = (status: number, data: IResponse) => {
     description: data?.message || '系统异常',
   };
 
-  showMessage({
-    type: MessageType.ERROR,
-    message: error.description,
-  });
+  // showMessage({
+  //   type: MessageType.ERROR,
+  //   message: error.description,
+  // });
 
   if (error.action) {
     error.action();
@@ -117,15 +117,15 @@ instance.interceptors.response.use(
       handleError(status, data as IResponse);
     } else if (error.request) {
 
-      showMessage({
-        type: MessageType.WARNING,
-        message: '网络错误',
-      });
+      // showMessage({
+      //   type: MessageType.WARNING,
+      //   message: '网络错误',
+      // });
     } else {
-      showMessage({
-        type: MessageType.ERROR,
-        message: '请求错误',
-      });
+      // showMessage({
+      //   type: MessageType.ERROR,
+      //   message: '请求错误',
+      // });
     }
     return Promise.reject(error);
   },

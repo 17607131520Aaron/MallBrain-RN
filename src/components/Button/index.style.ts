@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { COLORS } from '~/constants/colors';
 
 const styles = StyleSheet.create({
@@ -13,6 +13,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  customStyle: {
+    width: Dimensions.get('window').width,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: COLORS.white,
   },
   disabled: {
     backgroundColor: '#B2B4BF',
