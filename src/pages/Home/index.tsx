@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+
 import { Button } from '~/components/Button';
 
 import styles from './index.style';
@@ -10,7 +11,7 @@ const Home: React.FC = () => {
     <View style={styles.container}>
       <Text>首页wasd</Text>
       <View>
-        <Button type='error' onPress={handleConfirm} isCustom>
+        <Button isCustom type='error' onPress={handleConfirm}>
           确定11111
         </Button>
       </View>

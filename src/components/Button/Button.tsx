@@ -1,13 +1,10 @@
-import React, { memo } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-  GestureResponderEvent,
-} from 'react-native';
 import { throttle } from 'lodash';
+import React, { memo } from 'react';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+
 import styles from './index.style';
+
+import type { GestureResponderEvent } from 'react-native';
 
 export const BtnTypeEnum = {
   Default: 'default',
@@ -53,13 +50,13 @@ const Button = (props: ButtonProps) => {
   const couldPress = !loading && !disabled;
   return (
     <TouchableOpacity
-      style={isCustom && styles.customStyle}
       activeOpacity={couldPress ? 0.2 : 1}
+      style={isCustom && styles.customStyle}
       onPress={couldPress ? (onPress ? throttle(onPress, 1000) : undefined) : undefined}
     >
       <View style={[styles.button, disabled && styles.disabled, typeStyle, style]}>
         {iconProps && null}
-        {loading ? <ActivityIndicator color={'#E0E2E7'} size={20} style={styles.loading} /> : null}
+        {loading ? <ActivityIndicator color='#E0E2E7' size={20} style={styles.loading} /> : null}
         <Text style={[styles.text, typeTextStyle, bold && styles.boldText, textStyle]}>
           {children ?? '确定'}
         </Text>

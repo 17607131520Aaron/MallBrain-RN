@@ -1,4 +1,6 @@
-import request, { InternalAxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import request from 'axios';
+
+import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 // import { showMessage, MessageType } from './message';
 
 // 响应数据接口
@@ -82,7 +84,6 @@ const parse = <R>(res: AxiosResponse, params: { handleRaw: boolean }): R => {
   return data.data as R;
 };
 
-
 const instance = request.create({
   timeout: 5000,
   baseURL: 'http://127.0.0.1:5000',
@@ -116,7 +117,6 @@ instance.interceptors.response.use(
       const { status, data } = error.response;
       handleError(status, data as IResponse);
     } else if (error.request) {
-
       // showMessage({
       //   type: MessageType.WARNING,
       //   message: '网络错误',

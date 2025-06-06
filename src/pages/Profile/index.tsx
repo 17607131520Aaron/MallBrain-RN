@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+
 import styles from './index.style';
 
 const Profile: React.FC = () => {
