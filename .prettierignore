@@ -1,0 +1,17 @@
+# 构建输出
+android/app/build/
+ios/build/
+
+# 依赖目录
+node_modules/
+
+# 缓存文件
+.eslintcache
+.npm
+.yarn
+
+# 其他
+.git/
+.DS_Store
+*.log
+*.lock 
