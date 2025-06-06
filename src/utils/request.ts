@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import request from 'axios';
 
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
@@ -33,7 +34,10 @@ const handleError = (status: number, data: IResponse) => {
     401: {
       message: '提示',
       description: '登录超时，请重新登录',
-      action: () => (window.location.href = '/login'),
+      action: () => {
+        // 在React Native中重定向到登录页面的逻辑
+        // 可以使用导航库进行页面跳转
+      },
     },
     403: {
       message: '权限错误',
@@ -94,11 +98,15 @@ const instance = request.create({
 
 // 请求拦截器
 instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${token}`;
+  async (config: InternalAxiosRequestConfig) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (error) {
+      console.error('Error getting token from AsyncStorage:', error);
     }
     return config;
   },
@@ -168,4 +176,4 @@ const put = <T, R>(config: IRequestConfig<T>): Promise<R> => requestMethod<T, R>
 
 const del = <T, R>(config: IRequestConfig<T>): Promise<R> => requestMethod<T, R>('DELETE', config);
 
-export { get, post, put, del };
+export { del, get, post, put };

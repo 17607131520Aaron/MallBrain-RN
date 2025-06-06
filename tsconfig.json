@@ -36,5 +36,5 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": ["src", ".eslintrc.js", "*.js", "__tests__/**/*"]
 }

@@ -18,6 +18,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    createDefaultProgram: true,
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jest', 'prettier', 'import'],
   rules: {
@@ -237,6 +238,26 @@ module.exports = {
           },
         ],
         'no-undef': 'off', // TypeScript 自己会处理未定义的变量
+      },
+    },
+    {
+      files: ['*.js', '*.jsx'],
+      parser: 'espree',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      rules: {
+        '@typescript-eslint/consistent-type-imports': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/member-ordering': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/prefer-optional-chain': 'off',
+        '@typescript-eslint/prefer-nullish-coalescing': 'off',
       },
     },
     {
