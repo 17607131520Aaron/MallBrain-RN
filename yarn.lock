@@ -6902,6 +6902,11 @@ react-native-table-component@^1.2.2:
   resolved "https://registry.npmmirror.com/react-native-table-component/-/react-native-table-component-1.2.2.tgz#1c9bdcd8f1fd7edf10d1e93ebc3b7877ecd74def"
   integrity sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw==
 
+react-native-toast-message@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/react-native-toast-message/-/react-native-toast-message-2.3.0.tgz#c25fb40d7af4388f6a798efbfca479d53916ed00"
+  integrity sha512-d7LldTK1ei1Bl7RFhoOYw8hVQ4oKPQHORYI//xR9Pyz3HxSlFlvQbueE5X3KLoemRRgBrOUg3zY6DxXnxrVLRg==
+
 react-native-udp@^4.1.7:
   version "4.1.7"
   resolved "https://registry.npmmirror.com/react-native-udp/-/react-native-udp-4.1.7.tgz#9fa90b772b44c991605e8191444dd2ca3259cb58"

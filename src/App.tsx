@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Toast from 'react-native-toast-message';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Category from './pages/Category';
@@ -67,6 +68,7 @@ const App: React.FC = () => {
           </Tab.Navigator>
         </SafeAreaView>
       </NavigationContainer>
+      <Toast />
     </RootSiblingParent>
   );
 };
