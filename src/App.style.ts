@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: COLORS.white,
+    paddingBottom: 12,
     flex: 1,
   },
 });
