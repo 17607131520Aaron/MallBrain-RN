@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jest/recommended',
+    'plugin:prettier/recommended',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -20,6 +21,9 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jest', 'prettier', 'import'],
   rules: {
+    // Prettier 规则
+    'prettier/prettier': ['warn', {}, { usePrettierrc: true }],
+
     // React 相关规则
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -124,7 +128,6 @@ module.exports = {
 
     // 代码风格规则
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
-    'prettier/prettier': 'warn',
     'no-unused-vars': 'off', // 使用 @typescript-eslint/no-unused-vars 代替
     'no-empty': ['error', { allowEmptyCatch: true }],
     'no-constant-condition': ['error', { checkLoops: false }],

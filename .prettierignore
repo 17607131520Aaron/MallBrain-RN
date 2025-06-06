@@ -1,17 +1,43 @@
 # 构建输出
-android/app/build/
-ios/build/
+android/
+ios/
+build/
+dist/
+coverage/
 
 # 依赖目录
 node_modules/
+vendor/
 
 # 缓存文件
 .eslintcache
 .npm
 .yarn
+.cache
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 锁定文件
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # 其他
 .git/
 .DS_Store
-*.log
-*.lock 
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 特定文件
+.env
+.env.*
+!.env.example
+*.min.js
+*.min.css
