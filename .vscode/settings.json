@@ -4,7 +4,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.organizeImports": true
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -46,5 +47,12 @@
     "**/.git/**": true,
     "**/android/**": true,
     "**/ios/**": true
-  }
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "eslint.run": "onSave"
 }

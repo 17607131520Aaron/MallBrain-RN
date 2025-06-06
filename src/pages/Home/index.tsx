@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from '~/components/Button';
-// import { MessageType, showMessage } from '~/utils/message';
 
 import styles from './index.style';
 const Home: React.FC = () => {
-  const handleConfirm = () => {
-  };
+  const handleConfirm = () => {};
 
   return (
     <View style={styles.container}>
