@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       <Text>首页wasd</Text>
       <View>
         <Button isCustom type='error' onPress={handleConfirm}>
-          <Text>确定11111</Text>
+          <Text>保存按钮</Text>
         </Button>
       </View>
     </View>
