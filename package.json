@@ -15,7 +15,6 @@
   "dependencies": {
     "@native-html/table-plugin": "^5.3.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/netinfo": "^11.4.1",
     "@react-native-community/slider": "^4.5.7",
     "@react-native-cookies/cookies": "^6.2.1",
@@ -45,7 +44,6 @@
     "react-native-crypto": "^2.2.0",
     "react-native-crypto-js": "^1.0.0",
     "react-native-device-info": "^14.0.4",
-    "react-native-extra-dimensions-android": "^1.2.5",
     "react-native-fast-image": "^8.6.3",
     "react-native-fetch-api": "^3.0.0",
     "react-native-fs": "^2.20.0",
