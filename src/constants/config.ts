@@ -44,8 +44,12 @@ export const getApiConfig = (): IApiConfig => {
 
 // 其他全局配置
 export const APP_CONFIG = {
+  // 应用存储前缀，用于区分应用在本地存储中的数据，避免与其他应用冲突
   storagePrefix: '@MallBrain:',
+  // 用户令牌的存储键名，用于在本地存储中保存用户的登录凭证
   tokenKey: '@MallBrain:token',
+  // 用户信息的存储键名，用于在本地存储中保存用户的基本信息
   userKey: '@MallBrain:user',
+  // 网络请求最大重试次数，当请求失败时，系统会在达到此次数前自动重试
   maxRetryCount: 3,
 };
