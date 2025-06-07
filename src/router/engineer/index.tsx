@@ -6,25 +6,9 @@ import Home from '~/pages/Home';
 import Profile from '~/pages/Profile';
 import Service from '~/pages/Service';
 
-// 定义工程师导航栈参数类型
-export interface IEngineerStackParamList {
-  EngineerHome: undefined;
-  TaskList: undefined;
-  TaskDetail: { id: string };
-  ReportForm: { taskId: string };
-  [key: string]: undefined | object;
-}
-
-interface ITabParamList {
-  Home: undefined;
-  Service: undefined;
-  Profile: undefined;
-  [key: string]: undefined;
-}
-
 // 创建导航器
-const EngineerStack = createNativeStackNavigator<IEngineerStackParamList>();
-const Tab = createBottomTabNavigator<ITabParamList>();
+const EngineerStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 // 工程师首页导航栈
 export const EngineerHomeStack = (): React.ReactElement => {

@@ -7,17 +7,8 @@ import Login from '~/pages/Login';
 import { EngineerTabNavigator as EngineerTab } from '~/router/engineer';
 import { InstitutionTabNavigator as InstitutionTab } from '~/router/institution';
 
-// 定义根导航栈类型
-interface IRootStackParamList {
-  Main: undefined;
-  InstitutionMain: undefined;
-  EngineerMain: undefined;
-  Login: undefined;
-  [key: string]: undefined | object;
-}
-
 // 创建根导航器
-const Stack = createNativeStackNavigator<IRootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 // 根据登录状态渲染不同的路由
 const AppRouter: React.FC = () => {

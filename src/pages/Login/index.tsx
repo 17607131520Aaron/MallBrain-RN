@@ -4,7 +4,6 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,6 +11,8 @@ import {
 } from 'react-native';
 
 import { useAuth } from '~/contexts/AuthContext';
+
+import styles from './index.style';
 
 import type { TUserRole } from '~/contexts/AuthContext';
 
@@ -114,100 +115,5 @@ const Login: React.FC = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-    justifyContent: 'center',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 10,
-    color: '#333',
-  },
-  inputContainer: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  input: {
-    backgroundColor: '#f5f5f5',
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 15,
-    fontSize: 16,
-  },
-  roleSelector: {
-    marginTop: 10,
-    marginBottom: 15,
-  },
-  roleSelectorLabel: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#333',
-  },
-  roleButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  roleButton: {
-    flex: 1,
-    padding: 12,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  roleButtonSelected: {
-    backgroundColor: '#1890ff',
-    borderColor: '#1890ff',
-  },
-  roleButtonText: {
-    color: '#666',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  roleButtonTextSelected: {
-    color: '#fff',
-  },
-  loginButton: {
-    backgroundColor: '#1890ff',
-    borderRadius: 8,
-    padding: 15,
-    alignItems: 'center',
-  },
-  loginButtonDisabled: {
-    backgroundColor: '#a6d0fa',
-  },
-  loginButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  registerText: {
-    color: '#666',
-  },
-  registerLink: {
-    color: '#1890ff',
-    marginLeft: 5,
-  },
-});
 
 export default Login;

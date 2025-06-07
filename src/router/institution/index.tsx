@@ -7,28 +7,9 @@ import Home from '~/pages/Home';
 import Profile from '~/pages/Profile';
 import Service from '~/pages/Service';
 
-// 定义机构网点导航栈参数类型
-export interface IInstitutionStackParamList {
-  InstitutionHome: undefined;
-  InstitutionDetail: { id: string };
-  ProductList: undefined;
-  ProductDetail: { id: string };
-  ServiceList: undefined;
-  ServiceDetail: { id: string };
-  [key: string]: undefined | object;
-}
-
-interface ITabParamList {
-  Home: undefined;
-  Category: undefined;
-  Service: undefined;
-  Profile: undefined;
-  [key: string]: undefined;
-}
-
 // 创建导航器
-const InstitutionStack = createNativeStackNavigator<IInstitutionStackParamList>();
-const Tab = createBottomTabNavigator<ITabParamList>();
+const InstitutionStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 // 机构网点首页导航栈
 export const InstitutionHomeStack = (): React.ReactElement => {
