@@ -1,7 +1,17 @@
 // 主要颜色放置处，特殊颜色不用放在这里
 export const COLORS = {
+  background: '#f8f8f8',
+  primary: '#1890ff',
+  white: '#fff',
+  text: {
+    primary: '#333',
+    secondary: '#666',
+    danger: '#ff4d4f',
+  },
+  border: '#ddd',
+  shadow: '#000',
+  primaryLight: '#a6d0fa',
   // 常用
-  primary: '#2652FF',
   title: '#1B2035',
   engContent: '#505565',
   darkTitle: '#0A0C14',
@@ -16,8 +26,6 @@ export const COLORS = {
   pink: '#FFE8E1',
   yellow: '#FFBE1F',
   orange: '#ff6900',
-  white: '#FFFFFF',
-  border: '#D8D8D8',
   engBorder: '#D3D7E0',
   bottomBorder: '#E0E0E0',
   lightBorder: '#E7EAF2',
