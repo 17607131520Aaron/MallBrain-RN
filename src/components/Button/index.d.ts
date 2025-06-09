@@ -39,7 +39,7 @@ export type TBtnType = (typeof BtnTypeEnum)[keyof typeof BtnTypeEnum];
  * @property onPress - 点击事件处理函数
  * @property isBold - 文本是否加粗
  * @property iconProps - 图标属性
- * @property isCustom - 是否使用自定义样式
+ * @property isCustom - 底部当行按钮
  */
 export interface IButtonProps {
   children: React.ReactNode;
