@@ -1,39 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { applyMiddleware, legacy_createStore as legacyCreateStore } from 'redux';
-import { createTransform, persistReducer, persistStore } from 'redux-persist';
-import { thunk } from 'redux-thunk';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { rootReducer, whitelist } from './store';
+import { persistor, store } from './store';
 
-import type { Action, Reducer, Store } from 'redux';
-import type { PersistConfig } from 'redux-persist';
+import type { TypedUseSelectorHook } from 'react-redux';
+// eslint-disable-next-line import/order
+import type { TAppDispatch, TRootState } from './store';
 
-// 创建一个自定义转换器，用于序列化和反序列化状态。
-const transform = createTransform(
-  (inboundState) => inboundState, // 序列化
-  (outboundState) => outboundState, // 反序列化
-);
+// 导出store和persistor
+export { persistor, store };
 
-// 配置持久化
-const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
-  key: 'mallbrain-rn',
-  storage: AsyncStorage,
-  transforms: [transform],
-  whitelist: [...whitelist],
-};
-
-interface ISPayloadAction<T = Record<string, unknown>> extends Action<string> {
-  payload: T;
-}
-
-const persistedReducer = persistReducer<ReturnType<typeof rootReducer>, ISPayloadAction>(
-  persistConfig,
-  rootReducer as unknown as Reducer<ReturnType<typeof rootReducer>, ISPayloadAction>,
-);
-
-// 创建 store，应用中间件
-const store = legacyCreateStore(persistedReducer, applyMiddleware(thunk));
-
-const persist = persistStore(store as Store<ReturnType<typeof rootReducer>, Action>);
-
-export { persist, store };
+// 创建类型化的hooks
+export const useAppDispatch = (): TAppDispatch => useDispatch<TAppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;
