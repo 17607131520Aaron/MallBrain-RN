@@ -1,9 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
-import Toast from 'react-native-toast-message';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+
+import ToastView from '~/components/Toast';
 
 import styles from './App.style';
 import { AuthProvider } from './contexts/AuthContext';
@@ -20,7 +21,7 @@ const App: React.FC = () => {
               <AppRouter />
             </SafeAreaView>
           </AuthProvider>
-          <Toast />
+          <ToastView />
         </RootSiblingParent>
       </PersistGate>
     </Provider>

@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   roleSelector: {
     marginTop: 10,
     marginBottom: 15,
+    zIndex: 100,
   },
   roleSelectorLabel: {
     fontSize: 16,
@@ -75,10 +76,77 @@ const styles = StyleSheet.create({
     padding: 15,
     borderWidth: 1,
     borderColor: COLORS.border,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   roleDropdownText: {
     fontSize: 16,
     color: COLORS.text.primary,
+  },
+  dropdownIcon: {
+    fontSize: 14,
+    color: COLORS.text.secondary,
+  },
+  dropdownMenu: {
+    marginTop: 8,
+    borderRadius: 8,
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  dropdownItem: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  dropdownItemSelected: {
+    backgroundColor: COLORS.primaryLight,
+  },
+  dropdownItemText: {
+    fontSize: 16,
+    color: COLORS.text.primary,
+  },
+  dropdownItemTextSelected: {
+    color: COLORS.primary,
+    fontWeight: 'bold',
+  },
+  // PC风格下拉菜单样式
+  pcDropdown: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: '#3B82F6',
+    borderRadius: 5,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  pcDropdownOpen: {
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  pcDropdownText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  pcDropdownIcon: {
+    fontSize: 14,
+    color: '#3B82F6',
+  },
+  pcDropdownItem: {
+    padding: 14,
+    backgroundColor: 'white',
+  },
+  pcDropdownItemText: {
+    fontSize: 16,
+    color: '#333',
   },
   loginButton: {
     backgroundColor: COLORS.primary,

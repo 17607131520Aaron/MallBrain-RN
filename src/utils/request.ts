@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import request from 'axios';
 
+import ToastView from '~/components/Toast';
 import { APP_CONFIG, getApiConfig } from '~/constants/config';
-import { EMessageType, showMessage } from '~/utils/message';
 import { addNetworkListener, isNetworkConnected } from '~/utils/network';
 import { getStorageItem } from '~/utils/storage';
 
@@ -79,10 +79,7 @@ const handleError = (status: number, data: IResponse, isSkipErrorMessage = false
   };
 
   if (!isSkipErrorMessage) {
-    showMessage({
-      type: EMessageType.ERROR,
-      message: error.description,
-    });
+    ToastView.add(error.description);
   }
 
   if (error.action) {
@@ -178,18 +175,10 @@ instance.interceptors.response.use(
       handleError(status, data as IResponse);
     } else if (error.request) {
       console.error(`❌ [API] Network Error: ${error.message}`);
-
-      showMessage({
-        type: EMessageType.WARNING,
-        message: '网络错误，请检查您的网络连接',
-      });
+      ToastView.add('网络错误，请检查您的网络连接');
     } else {
       console.error(`❌ [API] Request Error: ${error.message}`);
-
-      showMessage({
-        type: EMessageType.ERROR,
-        message: '请求错误，请稍后重试',
-      });
+      ToastView.add('请求错误，请稍后重试');
     }
     return Promise.reject(error);
   },
@@ -261,10 +250,11 @@ const requestMethod = async <T, R>(
         requestQueue.push(queueRequest);
 
         // 显示提示
-        showMessage({
-          type: EMessageType.WARNING,
-          message: '当前网络不可用，请求将在恢复连接后自动发送',
-        });
+        // showMessage({
+        //   type: EMessageType.WARNING,
+        //   message: '当前网络不可用，请求将在恢复连接后自动发送',
+        // });
+        ToastView.add('当前网络不可用，请求将在恢复连接后自动发送');
       });
     }
   }
@@ -342,10 +332,7 @@ const uploadFile = async <R>(options: {
   // 检查网络连接
   const isConnected = await isNetworkConnected();
   if (!isConnected) {
-    showMessage({
-      type: EMessageType.ERROR,
-      message: '当前网络不可用，无法上传文件',
-    });
+    ToastView.add('当前网络不可用，无法上传文件');
     return Promise.reject(new Error('网络不可用'));
   }
 
@@ -364,10 +351,7 @@ const uploadFile = async <R>(options: {
 
     return parse<R>(response, { isHandleRaw: false, isSkipErrorMessage: false });
   } catch (error) {
-    showMessage({
-      type: EMessageType.ERROR,
-      message: '文件上传失败',
-    });
+    ToastView.add('文件上传失败');
     return Promise.reject(error);
   }
 };
