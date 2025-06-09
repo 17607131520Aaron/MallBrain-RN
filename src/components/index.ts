@@ -1,7 +1,7 @@
 // 自动导出所有组件
 import React from 'react';
 
-import { Button } from './Button';
+import Button from './Button';
 import Toast from './Toast';
 
 // 直接导出组件，可以解构使用
