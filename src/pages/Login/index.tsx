@@ -4,7 +4,6 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -14,6 +13,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 
 import { useAuth } from '~/contexts/AuthContext';
 
+import { institution, LoginInstitutionEnum } from './data';
 import styles from './index.style';
 
 import type { TUserRole } from '~/contexts/AuthContext';
@@ -21,22 +21,10 @@ import type { TUserRole } from '~/contexts/AuthContext';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState<TUserRole>('institution');
+  const [selectedRole, setSelectedRole] = useState<TUserRole>(institution);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { login, isLoading } = useAuth();
   const dropdownRef = useRef<SelectDropdown>(null);
-
-  const roleOptions = [
-    { title: '机构网点', value: 'institution' },
-    { title: '工程师', value: 'engineer' },
-    { title: '库管', value: 'inventory' },
-    { title: '电视', value: 'tv' },
-    { title: '手机', value: 'phone' },
-    { title: '笔记本', value: 'laptop' },
-    { title: '办公', value: 'office' },
-    { title: '生活周边7', value: 'life7' },
-    { title: '办公8', value: 'office8' },
-  ];
 
   const handleLogin = async (): Promise<void> => {
     if (username && password) {
@@ -74,13 +62,13 @@ const Login: React.FC = () => {
 
         <View style={styles.roleSelector}>
           <Text style={styles.roleSelectorLabel}>选择登录角色：</Text>
-          <View style={localStyles.dropdownContainer}>
+          <View style={styles.dropdownContainer}>
             <SelectDropdown
               ref={dropdownRef}
               statusBarTranslucent
-              data={roleOptions}
+              data={LoginInstitutionEnum}
               disabled={isLoading}
-              dropdownStyle={localStyles.dropdown}
+              dropdownStyle={styles.dropdown}
               renderButton={(selectedItem, isOpened) => {
                 return (
                   <View style={[styles.pcDropdown, isOpened && styles.pcDropdownOpen]}>
@@ -91,7 +79,7 @@ const Login: React.FC = () => {
                   </View>
                 );
               }}
-              renderItem={(item, index, isSelected) => {
+              renderItem={(item: { title: string; value: string }) => {
                 return (
                   <View style={styles.pcDropdownItem}>
                     <Text style={styles.pcDropdownItemText}>{item.title}</Text>
@@ -130,25 +118,5 @@ const Login: React.FC = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const localStyles = StyleSheet.create({
-  dropdownContainer: {
-    position: 'relative',
-    zIndex: 5000,
-    width: '100%',
-  },
-  dropdown: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#3B82F6',
-    borderTopWidth: 0,
-    borderRadius: 5,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-    backgroundColor: 'white',
-    position: 'absolute',
-    marginTop: 0,
-  },
-});
 
 export default Login;

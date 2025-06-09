@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 // 用户角色类型
-export type TUserRole = 'institution' | 'engineer' | 'inventory';
+export type TUserRole = 'INSTITUTION' | 'ENGINEER' | 'INVENTORY';
 
 interface IAuthContextData {
   isLoggedIn: boolean;

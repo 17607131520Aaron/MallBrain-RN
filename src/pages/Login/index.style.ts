@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.border,
     elevation: 5,
-    shadowColor: '#000',
+    shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
   pcDropdown: {
     height: 48,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: COLORS.primary,
     borderRadius: 5,
     paddingHorizontal: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: COLORS.white,
   },
   pcDropdownOpen: {
     borderBottomLeftRadius: 0,
@@ -134,19 +134,19 @@ const styles = StyleSheet.create({
   },
   pcDropdownText: {
     fontSize: 16,
-    color: '#333',
+    color: COLORS.text.primary,
   },
   pcDropdownIcon: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: COLORS.primary,
   },
   pcDropdownItem: {
     padding: 14,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.white,
   },
   pcDropdownItemText: {
     fontSize: 16,
-    color: '#333',
+    color: COLORS.text.primary,
   },
   loginButton: {
     backgroundColor: COLORS.primary,
@@ -195,6 +195,23 @@ const styles = StyleSheet.create({
   modalOptionText: {
     fontSize: 16,
     color: COLORS.text.primary,
+  },
+  dropdownContainer: {
+    position: 'relative',
+    zIndex: 5000,
+    width: '100%',
+  },
+  dropdown: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderTopWidth: 0,
+    borderRadius: 5,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    backgroundColor: COLORS.white,
+    position: 'absolute',
+    marginTop: 0,
   },
 });
 

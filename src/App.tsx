@@ -4,10 +4,9 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import ToastView from '~/components/Toast';
-
 import styles from './App.style';
 import { AuthProvider } from './contexts/AuthContext';
+import { ComponentProvider } from './contexts/ComponentContext';
 import AppRouter from './router';
 import { persistor, store } from './store';
 
@@ -16,12 +15,13 @@ const App: React.FC = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RootSiblingParent>
-          <AuthProvider>
-            <SafeAreaView style={styles.container}>
-              <AppRouter />
-            </SafeAreaView>
-          </AuthProvider>
-          <ToastView />
+          <ComponentProvider>
+            <AuthProvider>
+              <SafeAreaView style={styles.container}>
+                <AppRouter />
+              </SafeAreaView>
+            </AuthProvider>
+          </ComponentProvider>
         </RootSiblingParent>
       </PersistGate>
     </Provider>
