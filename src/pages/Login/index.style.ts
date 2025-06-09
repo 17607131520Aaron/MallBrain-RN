@@ -69,6 +69,17 @@ const styles = StyleSheet.create({
   roleButtonTextSelected: {
     color: COLORS.white,
   },
+  roleDropdown: {
+    backgroundColor: COLORS.grayBg,
+    borderRadius: 8,
+    padding: 15,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  roleDropdownText: {
+    fontSize: 16,
+    color: COLORS.text.primary,
+  },
   loginButton: {
     backgroundColor: COLORS.primary,
     borderRadius: 8,
@@ -94,6 +105,28 @@ const styles = StyleSheet.create({
   registerLink: {
     color: COLORS.primary,
     marginLeft: 5,
+  },
+  // 模态框样式
+  modalContainer: {
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    padding: 20,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'center',
+    color: COLORS.text.primary,
+  },
+  modalOption: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  modalOptionText: {
+    fontSize: 16,
+    color: COLORS.text.primary,
   },
 });
 

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 
 import { useAuth } from '~/contexts/AuthContext';
 
@@ -20,11 +21,34 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState<TUserRole>('institution');
+  const [isRoleModalVisible, setRoleModalVisible] = useState(false);
   const { login, isLoading } = useAuth();
 
   const handleLogin = async (): Promise<void> => {
     if (username && password) {
       await login(username, password, selectedRole);
+    }
+  };
+
+  const toggleRoleModal = (): void => {
+    setRoleModalVisible(!isRoleModalVisible);
+  };
+
+  const selectRole = (role: TUserRole): void => {
+    setSelectedRole(role);
+    toggleRoleModal();
+  };
+
+  const getRoleLabel = (role: TUserRole): string => {
+    switch (role) {
+      case 'institution':
+        return '机构网点';
+      case 'engineer':
+        return '工程师';
+      case 'inventory':
+        return '库管';
+      default:
+        return '选择角色';
     }
   };
 
@@ -58,39 +82,13 @@ const Login: React.FC = () => {
 
         <View style={styles.roleSelector}>
           <Text style={styles.roleSelectorLabel}>选择登录角色：</Text>
-          <View style={styles.roleButtonsContainer}>
-            <TouchableOpacity
-              disabled={isLoading}
-              style={[
-                styles.roleButton,
-                selectedRole === 'institution' && styles.roleButtonSelected,
-              ]}
-              onPress={() => setSelectedRole('institution')}
-            >
-              <Text
-                style={[
-                  styles.roleButtonText,
-                  selectedRole === 'institution' && styles.roleButtonTextSelected,
-                ]}
-              >
-                机构网点
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              disabled={isLoading}
-              style={[styles.roleButton, selectedRole === 'engineer' && styles.roleButtonSelected]}
-              onPress={() => setSelectedRole('engineer')}
-            >
-              <Text
-                style={[
-                  styles.roleButtonText,
-                  selectedRole === 'engineer' && styles.roleButtonTextSelected,
-                ]}
-              >
-                工程师
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            disabled={isLoading}
+            style={styles.roleDropdown}
+            onPress={toggleRoleModal}
+          >
+            <Text style={styles.roleDropdownText}>{getRoleLabel(selectedRole)}</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -112,6 +110,21 @@ const Login: React.FC = () => {
           <Text style={styles.registerLink}>立即注册</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal isVisible={isRoleModalVisible} onBackdropPress={toggleRoleModal}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>选择角色</Text>
+          <TouchableOpacity style={styles.modalOption} onPress={() => selectRole('institution')}>
+            <Text style={styles.modalOptionText}>机构网点</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.modalOption} onPress={() => selectRole('engineer')}>
+            <Text style={styles.modalOptionText}>工程师</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.modalOption} onPress={() => selectRole('inventory')}>
+            <Text style={styles.modalOptionText}>库管</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </KeyboardAvoidingView>
   );
 };

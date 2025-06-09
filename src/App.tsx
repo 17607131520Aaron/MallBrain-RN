@@ -8,12 +8,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 import styles from './App.style';
 import { AuthProvider } from './contexts/AuthContext';
 import AppRouter from './router';
-import { persist, store } from './store';
+import { persistor, store } from './store';
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persist}>
+      <PersistGate loading={null} persistor={persistor}>
         <RootSiblingParent>
           <AuthProvider>
             <SafeAreaView style={styles.container}>
