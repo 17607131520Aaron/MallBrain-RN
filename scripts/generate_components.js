@@ -7,6 +7,11 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 获取当前文件的目录路径
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 组件目录路径
 const COMPONENTS_DIR = path.resolve(__dirname, '../src/components');
@@ -54,7 +59,6 @@ const EnhancedToast = Object.assign(Toast, {
   },
 });`
     : '';
-
   // 组件模块对象
   const componentModulesEntries = componentDirs.map((dir) => {
     if (dir === 'Toast') {
@@ -70,10 +74,10 @@ ${componentModulesEntries.join(',\n')}
   // 组件注册表
   const registry = `
 // 组件类型定义
-export type ITComponentRegistry = {
+export interface ITComponentRegistry {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: React.ComponentType<any>;
-};
+}
 
 // 自动生成组件注册表
 export const componentRegistry: ITComponentRegistry = Object.entries(componentModules).reduce(

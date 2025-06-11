@@ -2,7 +2,6 @@
 // 由scripts/generate_components.js生成
 
 import Button from './Button';
-import Card from './Card';
 import Input from './Input';
 import Toast from './Toast';
 
@@ -21,7 +20,6 @@ const EnhancedToast = Object.assign(Toast, {
 // 组件模块对象
 const componentModules = {
   Button,
-  Card,
   Input,
   Toast: EnhancedToast,
 };
@@ -45,7 +43,7 @@ export const componentRegistry: ITComponentRegistry = Object.entries(componentMo
 export const Components = componentRegistry;
 
 // 自动导出所有组件
-export { Button, Card, Input, EnhancedToast as Toast };
+export { Button, Input, EnhancedToast as Toast };
 
 // 如需添加新组件，请在src/components目录下创建新的组件目录
 // 然后运行 yarn generate:components 命令更新此文件
