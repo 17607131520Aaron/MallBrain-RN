@@ -2,12 +2,14 @@
 import React from 'react';
 
 import Button from './Button';
+import Input from './Input';
 import Toast from './Toast';
 
 // 直接导出组件，可以解构使用
 export const Components = {
   Button,
   Toast,
+  Input,
 };
 
 // 导出所有组件
@@ -17,6 +19,7 @@ export { Button, Toast };
 export const componentRegistry = {
   Button,
   Toast,
+  Input,
 };
 
 // 定义组件注册表类型
@@ -32,8 +35,9 @@ interface IWithComponentsProps {
 export const withComponents = (
   WrappedComponent: React.ComponentType<IWithComponentsProps>,
 ): React.FC<IWithComponentsProps> => {
-  const WithComponents = (props: IWithComponentsProps): React.ReactElement => {
+  return (props: IWithComponentsProps): React.ReactElement => {
     return React.createElement(WrappedComponent, { ...props, components: componentRegistry });
   };
-  return WithComponents;
 };
+
+export type { IInputProps } from './Input/types';

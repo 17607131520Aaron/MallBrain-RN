@@ -103,11 +103,11 @@ const Home: React.FC = () => {
       <View style={styles.header}>
         <Text style={styles.greeting}>您好！</Text>
         <Text style={styles.welcomeText}>
-          {/* 欢迎使用 {userRole === 'institution' ? '网点管理系统' : '工程师系统'} */}
+           欢迎使用 {userRole === 'INSTITUTION' ? '网点管理系统' : '工程师系统'}
         </Text>
       </View>
 
-      {/* {userRole === 'institution' ? renderInstitutionContent() : renderEngineerContent()} */}
+       {userRole === 'INSTITUTION' ? renderInstitutionContent() : renderEngineerContent()}
     </ScrollView>
   );
 };

@@ -25,7 +25,7 @@ const AppRouter: React.FC = () => {
       return { component: Login, name: 'Login' };
     }
 
-    if (userRole === 'institution') {
+    if (userRole === 'INSTITUTION') {
       return { component: InstitutionTab, name: 'InstitutionMain' };
     }
 

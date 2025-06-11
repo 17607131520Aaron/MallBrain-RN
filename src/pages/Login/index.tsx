@@ -1,121 +1,174 @@
-import React, { useRef, useState } from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/AntDesign';
 
+import { Components } from '~/components';
 import { useAuth } from '~/contexts/AuthContext';
 
-import { institution, LoginInstitutionEnum } from './data';
 import styles from './index.style';
 
-import type { TUserRole } from '~/contexts/AuthContext';
+const { Input } = Components;
 
 const Login: React.FC = () => {
+  const { login, isLoading } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState<TUserRole>(institution);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { login, isLoading } = useAuth();
-  const dropdownRef = useRef<SelectDropdown>(null);
+  const [loading, setLoading] = useState(false);
+  const [loginType, setLoginType] = useState('account'); // account 或 qrcode
+  const [rememberPassword, setRememberPassword] = useState(true);
+  const [agreePolicy, setAgreePolicy] = useState(true);
 
-  const handleLogin = async (): Promise<void> => {
+  const handleLogin = async () => {
     if (username && password) {
-      await login(username, password, selectedRole);
+      await login(username, password, 'ENGINEER');
     }
   };
 
+  const switchLoginType = (type: string) => {
+    setLoginType(type);
+  };
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.logoContainer}>
-        <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.logo} />
-        <Text style={styles.title}>MallBrain</Text>
-      </View>
+    <LinearGradient colors={['#ff6700', '#ff8e46', '#ffa76c']} style={styles.gradientBackground}>
+      <SafeAreaView edges={['top', 'right', 'bottom', 'left']} style={styles.container}>
+        <View style={styles.formContainer}>
+          <View style={styles.logoContainer}>
+            {/* <Text style={styles.logo}>小</Text> */}
+            <Text style={styles.title}>小米账号登录</Text>
+            <Text style={styles.subtitle}>欢迎使用小米商城</Text>
+          </View>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          autoCapitalize='none'
-          editable={!isLoading}
-          placeholder='用户名'
-          style={styles.input}
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput
-          secureTextEntry
-          editable={!isLoading}
-          placeholder='密码'
-          style={styles.input}
-          value={password}
-          onChangeText={setPassword}
-        />
+          <View style={styles.card}>
+            <View style={styles.tabContainer}>
+              <TouchableOpacity
+                style={[
+                  styles.tabButton,
+                  loginType === 'account' && { borderBottomWidth: 2, borderBottomColor: '#ff6700' },
+                ]}
+                onPress={() => switchLoginType('account')}
+              >
+                <Text style={[styles.tabText, loginType === 'account' && styles.activeTabText]}>
+                  账号登录
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.tabButton,
+                  loginType === 'qrcode' && { borderBottomWidth: 2, borderBottomColor: '#ff6700' },
+                ]}
+                onPress={() => switchLoginType('qrcode')}
+              >
+                <Text style={[styles.tabText, loginType === 'qrcode' && styles.activeTabText]}>
+                  扫码登录
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-        <View style={styles.roleSelector}>
-          <Text style={styles.roleSelectorLabel}>选择登录角色：</Text>
-          <View style={styles.dropdownContainer}>
-            <SelectDropdown
-              ref={dropdownRef}
-              statusBarTranslucent
-              data={LoginInstitutionEnum}
-              disabled={isLoading}
-              dropdownStyle={styles.dropdown}
-              renderButton={(selectedItem, isOpened) => {
-                return (
-                  <View style={[styles.pcDropdown, isOpened && styles.pcDropdownOpen]}>
-                    <Text style={styles.pcDropdownText}>
-                      {selectedItem ? selectedItem.title : '请选择'}
+            {loginType === 'account' ? (
+              <>
+                <View style={styles.inputGroup}>
+                  <Input
+                    required
+                    disabled={loading}
+                    placeholder='小米账号/手机号码/邮箱'
+                    // prefix={<Icon color={COLORS.gray} name='user' size={20} />}
+                    value={username}
+                    onChangeText={setUsername}
+                  />
+
+                  <Input.Password
+                    required
+                    disabled={loading}
+                    placeholder='密码'
+                    value={password}
+                    onChangeText={setPassword}
+                  />
+                </View>
+
+                <View style={styles.checkboxRow}>
+                  <TouchableOpacity
+                    style={styles.checkboxContainer}
+                    onPress={() => setRememberPassword(!rememberPassword)}
+                  >
+                    <View style={[styles.checkbox, rememberPassword && styles.checkboxChecked]}>
+                      {rememberPassword && <Icon color='#fff' name='check' size={12} />}
+                    </View>
+                    <Text style={styles.checkboxLabel}>记住密码</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity>
+                    <Text style={styles.forgotPasswordText}>忘记密码?</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity
+                  disabled={!username || !password || loading || !agreePolicy}
+                  style={[
+                    styles.loginButton,
+                    (!username || !password || loading || !agreePolicy) &&
+                      styles.loginButtonDisabled,
+                  ]}
+                  onPress={handleLogin}
+                >
+                  <Text style={styles.loginButtonText}>{loading ? '登录中...' : '登录'}</Text>
+                </TouchableOpacity>
+
+                <View style={styles.policyContainer}>
+                  <TouchableOpacity
+                    style={styles.checkboxContainer}
+                    onPress={() => setAgreePolicy(!agreePolicy)}
+                  >
+                    <View style={[styles.checkbox, agreePolicy && styles.checkboxChecked]}>
+                      {agreePolicy && <Icon color='#fff' name='check' size={12} />}
+                    </View>
+                    <Text style={styles.policyText}>
+                      已阅读并同意
+                      <Text style={styles.policyLink}>《用户协议》</Text>
+                      <Text style={styles.policyLink}>《隐私政策》</Text>
                     </Text>
-                    <Text style={styles.pcDropdownIcon}>{isOpened ? '▲' : '▼'}</Text>
-                  </View>
-                );
-              }}
-              renderItem={(item: { title: string; value: string }) => {
-                return (
-                  <View style={styles.pcDropdownItem}>
-                    <Text style={styles.pcDropdownItemText}>{item.title}</Text>
-                  </View>
-                );
-              }}
-              showsVerticalScrollIndicator={false}
-              onBlur={() => setIsDropdownOpen(false)}
-              onFocus={() => setIsDropdownOpen(true)}
-              onSelect={(selectedItem) => {
-                setSelectedRole(selectedItem.value);
-              }}
-            />
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <View style={styles.qrcodeContainer}>
+                <Icon color='#ff6700' name='qrcode' size={120} />
+                <Text style={styles.qrcodeText}>请使用小米商城APP扫描二维码登录</Text>
+                <Text style={styles.qrcodeSubText}>小米商城APP - 我的 - 扫一扫</Text>
+              </View>
+            )}
+
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>还没有账号?</Text>
+              <TouchableOpacity>
+                <Text style={styles.registerText}>立即注册</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.otherLoginOptions}>
+              <View style={styles.divider}>
+                <View style={styles.dividerLine} />
+                <Text style={styles.dividerText}>其他登录方式</Text>
+                <View style={styles.dividerLine} />
+              </View>
+
+              <View style={styles.socialButtons}>
+                <TouchableOpacity style={styles.socialButton}>
+                  <Icon color='#4CAF50' name='wechat' size={24} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialButton}>
+                  <Icon color='#2196F3' name='QQ' size={24} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialButton}>
+                  <Icon color='#FF9800' name='weibo' size={24} />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-
-      <TouchableOpacity
-        disabled={isLoading}
-        style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
-        onPress={handleLogin}
-      >
-        {isLoading ? (
-          <ActivityIndicator color='#fff' />
-        ) : (
-          <Text style={styles.loginButtonText}>登录</Text>
-        )}
-      </TouchableOpacity>
-
-      <View style={styles.registerContainer}>
-        <Text style={styles.registerText}>还没有账号？</Text>
-        <TouchableOpacity disabled={isLoading}>
-          <Text style={styles.registerLink}>立即注册</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
