@@ -12,14 +12,10 @@ import styles from './index.style';
 
 const { Input } = Components;
 
-// 定义内联样式常量，避免在JSX中直接使用内联样式
-const tabActiveStyle = { borderBottomWidth: 2, borderBottomColor: COLORS.orange };
-
 const Login: React.FC = () => {
   const { login, isLoading } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginType, setLoginType] = useState('account'); // account 或 qrcode
   const [isRememberPassword, setIsRememberPassword] = useState(true);
   const [isAgreePolicy, setIsAgreePolicy] = useState(true);
 
@@ -27,10 +23,6 @@ const Login: React.FC = () => {
     if (username && password) {
       await login(username, password, 'ENGINEER');
     }
-  };
-
-  const switchLoginType = (type: string): void => {
-    setLoginType(type);
   };
 
   return (
@@ -41,103 +33,72 @@ const Login: React.FC = () => {
       <SafeAreaView edges={['top', 'right', 'bottom', 'left']} style={styles.container}>
         <View style={styles.formContainer}>
           <View style={styles.logoContainer}>
-            {/* <Text style={styles.logo}>小</Text> */}
-            <Text style={styles.title}>小米账号登录</Text>
+            <Text style={styles.logo}>小</Text>
             <Text style={styles.subtitle}>欢迎使用小米商城</Text>
           </View>
 
           <View style={styles.card}>
-            <View style={styles.tabContainer}>
+            <View style={styles.inputGroup}>
+              <Input
+                required
+                disabled={isLoading}
+                placeholder='账号/手机号码/邮箱'
+                value={username}
+                onChangeText={setUsername}
+              />
+
+              <Input.Password
+                required
+                disabled={isLoading}
+                placeholder='密码'
+                value={password}
+                onChangeText={setPassword}
+              />
+            </View>
+
+            <View style={styles.checkboxRow}>
               <TouchableOpacity
-                style={[styles.tabButton, loginType === 'account' && tabActiveStyle]}
-                onPress={() => switchLoginType('account')}
+                style={styles.checkboxContainer}
+                onPress={() => setIsRememberPassword(!isRememberPassword)}
               >
-                <Text style={[styles.tabText, loginType === 'account' && styles.activeTabText]}>
-                  账号登录
-                </Text>
+                <View style={[styles.checkbox, isRememberPassword && styles.checkboxChecked]}>
+                  {isRememberPassword && <Icon color={COLORS.white} name='check' size={12} />}
+                </View>
+                <Text style={styles.checkboxLabel}>记住密码</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.tabButton, loginType === 'qrcode' && tabActiveStyle]}
-                onPress={() => switchLoginType('qrcode')}
-              >
-                <Text style={[styles.tabText, loginType === 'qrcode' && styles.activeTabText]}>
-                  扫码登录
-                </Text>
+
+              <TouchableOpacity>
+                <Text style={styles.forgotPasswordText}>忘记密码?</Text>
               </TouchableOpacity>
             </View>
 
-            {loginType === 'account' ? (
-              <>
-                <View style={styles.inputGroup}>
-                  <Input
-                    required
-                    disabled={isLoading}
-                    placeholder='小米账号/手机号码/邮箱'
-                    // prefix={<Icon color={COLORS.gray} name='user' size={20} />}
-                    value={username}
-                    onChangeText={setUsername}
-                  />
+            <TouchableOpacity
+              disabled={!username || !password || isLoading || !isAgreePolicy}
+              style={[
+                styles.loginButton,
+                (!username || !password || isLoading || !isAgreePolicy) &&
+                  styles.loginButtonDisabled,
+              ]}
+              onPress={handleLogin}
+            >
+              <Text style={styles.loginButtonText}>{isLoading ? '登录中...' : '登录'}</Text>
+            </TouchableOpacity>
 
-                  <Input.Password
-                    required
-                    disabled={isLoading}
-                    placeholder='密码'
-                    value={password}
-                    onChangeText={setPassword}
-                  />
+            <View style={styles.policyContainer}>
+              <TouchableOpacity
+                style={styles.checkboxContainer}
+                onPress={() => setIsAgreePolicy(!isAgreePolicy)}
+              >
+                <View style={[styles.checkbox, isAgreePolicy && styles.checkboxChecked]}>
+                  {isAgreePolicy && <Icon color={COLORS.white} name='check' size={12} />}
                 </View>
-
-                <View style={styles.checkboxRow}>
-                  <TouchableOpacity
-                    style={styles.checkboxContainer}
-                    onPress={() => setIsRememberPassword(!isRememberPassword)}
-                  >
-                    <View style={[styles.checkbox, isRememberPassword && styles.checkboxChecked]}>
-                      {isRememberPassword && <Icon color={COLORS.white} name='check' size={12} />}
-                    </View>
-                    <Text style={styles.checkboxLabel}>记住密码</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity>
-                    <Text style={styles.forgotPasswordText}>忘记密码?</Text>
-                  </TouchableOpacity>
-                </View>
-
-                <TouchableOpacity
-                  disabled={!username || !password || isLoading || !isAgreePolicy}
-                  style={[
-                    styles.loginButton,
-                    (!username || !password || isLoading || !isAgreePolicy) &&
-                      styles.loginButtonDisabled,
-                  ]}
-                  onPress={handleLogin}
-                >
-                  <Text style={styles.loginButtonText}>{isLoading ? '登录中...' : '登录'}</Text>
-                </TouchableOpacity>
-
-                <View style={styles.policyContainer}>
-                  <TouchableOpacity
-                    style={styles.checkboxContainer}
-                    onPress={() => setIsAgreePolicy(!isAgreePolicy)}
-                  >
-                    <View style={[styles.checkbox, isAgreePolicy && styles.checkboxChecked]}>
-                      {isAgreePolicy && <Icon color={COLORS.white} name='check' size={12} />}
-                    </View>
-                    <Text style={styles.policyText}>
-                      已阅读并同意
-                      <Text style={styles.policyLink}>《用户协议》</Text>
-                      <Text style={styles.policyLink}>《隐私政策》</Text>
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </>
-            ) : (
-              <View style={styles.qrcodeContainer}>
-                <Icon color={COLORS.orange} name='qrcode' size={120} />
-                <Text style={styles.qrcodeText}>请使用小米商城APP扫描二维码登录</Text>
-                <Text style={styles.qrcodeSubText}>小米商城APP - 我的 - 扫一扫</Text>
-              </View>
-            )}
+                <Text style={styles.policyText}>
+                  已阅读并同意
+                  <Text style={styles.policyLink}>《用户协议》</Text>
+                  <Text style={styles.policyLink}>《隐私政策》</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             <View style={styles.footer}>
               <Text style={styles.footerText}>还没有账号?</Text>

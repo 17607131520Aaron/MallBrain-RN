@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     overflow: 'hidden',
   },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: COLORS.white,
-    marginTop: 16,
-    textAlign: 'center',
-  },
   subtitle: {
     fontSize: 16,
     color: COLORS.white,
@@ -62,36 +55,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  tabContainer: {
-    flexDirection: 'row',
-    marginBottom: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.bottomBorder,
-  },
-  tabButton: {
-    flex: 1,
-    alignItems: 'center',
-    paddingBottom: 10,
-  },
-  tabText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: COLORS.gray,
-    paddingBottom: 8,
-  },
-  activeTabText: {
-    color: COLORS.orange,
-    fontWeight: 'bold',
-  },
   inputGroup: {
     marginBottom: 15,
-  },
-  inputStyle: {
-    marginBottom: 15,
-    height: 50,
-    borderWidth: 0,
-    borderColor: COLORS.bottomBorder,
-    borderRadius: 4,
   },
   checkboxRow: {
     flexDirection: 'row',
@@ -150,35 +115,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  optionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
   forgotPasswordText: {
     color: COLORS.orange,
     fontSize: 14,
-  },
-  smsLoginText: {
-    color: COLORS.orange,
-    fontSize: 14,
-  },
-  qrcodeContainer: {
-    alignItems: 'center',
-    padding: 20,
-    paddingVertical: 40,
-  },
-  qrcodeText: {
-    marginTop: 20,
-    textAlign: 'center',
-    color: COLORS.text.primary,
-    fontWeight: '500',
-  },
-  qrcodeSubText: {
-    marginTop: 10,
-    textAlign: 'center',
-    color: COLORS.gray,
-    fontSize: 12,
   },
   footer: {
     flexDirection: 'row',
