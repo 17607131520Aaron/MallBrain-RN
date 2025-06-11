@@ -4,6 +4,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import { Toast } from '~/components';
+
 import styles from './App.style';
 import { AuthProvider } from './contexts/AuthContext';
 import { ComponentProvider } from './contexts/ComponentContext';
@@ -20,6 +22,7 @@ const App: React.FC = () => {
               <AuthProvider>
                 <SafeAreaView edges={['right', 'bottom', 'left']} style={styles.container}>
                   <AppRouter />
+                  <Toast />
                 </SafeAreaView>
               </AuthProvider>
             </ComponentProvider>
