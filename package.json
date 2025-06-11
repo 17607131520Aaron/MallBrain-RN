@@ -14,7 +14,8 @@
     "build": "python3 scripts/build_app.py",
     "build:apk": "python3 scripts/build_app.py",
     "build:aab": "python3 scripts/build_app.py --aab",
-    "build:debug": "python3 scripts/build_app.py --debug"
+    "build:debug": "python3 scripts/build_app.py --debug",
+    "generate:components": "node scripts/generate_components.js"
   },
   "dependencies": {
     "@native-html/table-plugin": "^5.3.1",

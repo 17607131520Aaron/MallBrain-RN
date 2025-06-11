@@ -4,11 +4,11 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { Toast } from '~/components';
+// 导入全局组件
+// import GlobalComponents from '~/components/GlobalComponents';
 
 import styles from './App.style';
 import { AuthProvider } from './contexts/AuthContext';
-import { ComponentProvider } from './contexts/ComponentContext';
 import AppRouter from './router';
 import { persistor, store } from './store';
 
@@ -18,14 +18,12 @@ const App: React.FC = () => {
       <PersistGate loading={null} persistor={persistor}>
         <SafeAreaProvider>
           <RootSiblingParent>
-            <ComponentProvider>
-              <AuthProvider>
-                <SafeAreaView edges={['right', 'bottom', 'left']} style={styles.container}>
-                  <AppRouter />
-                  <Toast />
-                </SafeAreaView>
-              </AuthProvider>
-            </ComponentProvider>
+            <AuthProvider>
+              <SafeAreaView edges={['right', 'bottom', 'left']} style={styles.container}>
+                <AppRouter />
+                {/* <GlobalComponents /> */}
+              </SafeAreaView>
+            </AuthProvider>
           </RootSiblingParent>
         </SafeAreaProvider>
       </PersistGate>

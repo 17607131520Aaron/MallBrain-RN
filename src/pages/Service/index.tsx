@@ -11,7 +11,10 @@ const Service: React.FC = () => (
     <Button
       type='primary'
       onPress={() => {
-        Toast.add('测试');
+        Toast.success('操作成功');
+        Toast.error('操作失败');
+        Toast.info('这是一条普通提示消息');
+        Toast.warn('这是一条警告提示消息');
       }}
     >
       <Text>测试</Text>
