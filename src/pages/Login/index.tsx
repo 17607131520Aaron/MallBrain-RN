@@ -5,33 +5,39 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { Components } from '~/components';
+import { COLORS } from '~/constants/colors';
 import { useAuth } from '~/contexts/AuthContext';
 
 import styles from './index.style';
 
 const { Input } = Components;
 
+// 定义内联样式常量，避免在JSX中直接使用内联样式
+const tabActiveStyle = { borderBottomWidth: 2, borderBottomColor: COLORS.orange };
+
 const Login: React.FC = () => {
   const { login, isLoading } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [loginType, setLoginType] = useState('account'); // account 或 qrcode
-  const [rememberPassword, setRememberPassword] = useState(true);
-  const [agreePolicy, setAgreePolicy] = useState(true);
+  const [isRememberPassword, setIsRememberPassword] = useState(true);
+  const [isAgreePolicy, setIsAgreePolicy] = useState(true);
 
-  const handleLogin = async () => {
+  const handleLogin = async (): Promise<void> => {
     if (username && password) {
       await login(username, password, 'ENGINEER');
     }
   };
 
-  const switchLoginType = (type: string) => {
+  const switchLoginType = (type: string): void => {
     setLoginType(type);
   };
 
   return (
-    <LinearGradient colors={['#ff6700', '#ff8e46', '#ffa76c']} style={styles.gradientBackground}>
+    <LinearGradient
+      colors={[COLORS.orange, '#ff8e46', '#ffa76c']}
+      style={styles.gradientBackground}
+    >
       <SafeAreaView edges={['top', 'right', 'bottom', 'left']} style={styles.container}>
         <View style={styles.formContainer}>
           <View style={styles.logoContainer}>
@@ -43,10 +49,7 @@ const Login: React.FC = () => {
           <View style={styles.card}>
             <View style={styles.tabContainer}>
               <TouchableOpacity
-                style={[
-                  styles.tabButton,
-                  loginType === 'account' && { borderBottomWidth: 2, borderBottomColor: '#ff6700' },
-                ]}
+                style={[styles.tabButton, loginType === 'account' && tabActiveStyle]}
                 onPress={() => switchLoginType('account')}
               >
                 <Text style={[styles.tabText, loginType === 'account' && styles.activeTabText]}>
@@ -54,10 +57,7 @@ const Login: React.FC = () => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[
-                  styles.tabButton,
-                  loginType === 'qrcode' && { borderBottomWidth: 2, borderBottomColor: '#ff6700' },
-                ]}
+                style={[styles.tabButton, loginType === 'qrcode' && tabActiveStyle]}
                 onPress={() => switchLoginType('qrcode')}
               >
                 <Text style={[styles.tabText, loginType === 'qrcode' && styles.activeTabText]}>
@@ -71,7 +71,7 @@ const Login: React.FC = () => {
                 <View style={styles.inputGroup}>
                   <Input
                     required
-                    disabled={loading}
+                    disabled={isLoading}
                     placeholder='小米账号/手机号码/邮箱'
                     // prefix={<Icon color={COLORS.gray} name='user' size={20} />}
                     value={username}
@@ -80,7 +80,7 @@ const Login: React.FC = () => {
 
                   <Input.Password
                     required
-                    disabled={loading}
+                    disabled={isLoading}
                     placeholder='密码'
                     value={password}
                     onChangeText={setPassword}
@@ -90,10 +90,10 @@ const Login: React.FC = () => {
                 <View style={styles.checkboxRow}>
                   <TouchableOpacity
                     style={styles.checkboxContainer}
-                    onPress={() => setRememberPassword(!rememberPassword)}
+                    onPress={() => setIsRememberPassword(!isRememberPassword)}
                   >
-                    <View style={[styles.checkbox, rememberPassword && styles.checkboxChecked]}>
-                      {rememberPassword && <Icon color='#fff' name='check' size={12} />}
+                    <View style={[styles.checkbox, isRememberPassword && styles.checkboxChecked]}>
+                      {isRememberPassword && <Icon color={COLORS.white} name='check' size={12} />}
                     </View>
                     <Text style={styles.checkboxLabel}>记住密码</Text>
                   </TouchableOpacity>
@@ -104,24 +104,24 @@ const Login: React.FC = () => {
                 </View>
 
                 <TouchableOpacity
-                  disabled={!username || !password || loading || !agreePolicy}
+                  disabled={!username || !password || isLoading || !isAgreePolicy}
                   style={[
                     styles.loginButton,
-                    (!username || !password || loading || !agreePolicy) &&
+                    (!username || !password || isLoading || !isAgreePolicy) &&
                       styles.loginButtonDisabled,
                   ]}
                   onPress={handleLogin}
                 >
-                  <Text style={styles.loginButtonText}>{loading ? '登录中...' : '登录'}</Text>
+                  <Text style={styles.loginButtonText}>{isLoading ? '登录中...' : '登录'}</Text>
                 </TouchableOpacity>
 
                 <View style={styles.policyContainer}>
                   <TouchableOpacity
                     style={styles.checkboxContainer}
-                    onPress={() => setAgreePolicy(!agreePolicy)}
+                    onPress={() => setIsAgreePolicy(!isAgreePolicy)}
                   >
-                    <View style={[styles.checkbox, agreePolicy && styles.checkboxChecked]}>
-                      {agreePolicy && <Icon color='#fff' name='check' size={12} />}
+                    <View style={[styles.checkbox, isAgreePolicy && styles.checkboxChecked]}>
+                      {isAgreePolicy && <Icon color={COLORS.white} name='check' size={12} />}
                     </View>
                     <Text style={styles.policyText}>
                       已阅读并同意
@@ -133,7 +133,7 @@ const Login: React.FC = () => {
               </>
             ) : (
               <View style={styles.qrcodeContainer}>
-                <Icon color='#ff6700' name='qrcode' size={120} />
+                <Icon color={COLORS.orange} name='qrcode' size={120} />
                 <Text style={styles.qrcodeText}>请使用小米商城APP扫描二维码登录</Text>
                 <Text style={styles.qrcodeSubText}>小米商城APP - 我的 - 扫一扫</Text>
               </View>
@@ -155,13 +155,13 @@ const Login: React.FC = () => {
 
               <View style={styles.socialButtons}>
                 <TouchableOpacity style={styles.socialButton}>
-                  <Icon color='#4CAF50' name='wechat' size={24} />
+                  <Icon color={COLORS.social.wechat} name='wechat' size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.socialButton}>
-                  <Icon color='#2196F3' name='QQ' size={24} />
+                  <Icon color={COLORS.social.qq} name='QQ' size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.socialButton}>
-                  <Icon color='#FF9800' name='weibo' size={24} />
+                  <Icon color={COLORS.social.weibo} name='weibo' size={24} />
                 </TouchableOpacity>
               </View>
             </View>

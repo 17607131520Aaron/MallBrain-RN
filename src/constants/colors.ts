@@ -3,10 +3,16 @@ export const COLORS = {
   background: '#f8f8f8',
   primary: '#1890ff',
   white: '#fff',
+  whiteTransparent: 'rgba(255, 255, 255, 0.2)',
   text: {
     primary: '#333',
     secondary: '#666',
     danger: '#ff4d4f',
+  },
+  social: {
+    wechat: '#4CAF50',
+    qq: '#2196F3',
+    weibo: '#FF9800',
   },
   border: '#ddd',
   shadow: '#000',

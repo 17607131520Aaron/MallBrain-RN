@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   gradientBackground: {
     flex: 1,
-    backgroundColor: '#ff6700',
+    backgroundColor: COLORS.orange,
   },
   formContainer: {
     padding: 20,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     height: 80,
     textAlign: 'center',
     lineHeight: 80,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: COLORS.whiteTransparent,
     borderRadius: 40,
     overflow: 'hidden',
   },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: COLORS.bottomBorder,
   },
   tabButton: {
     flex: 1,
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#999',
+    color: COLORS.gray,
     paddingBottom: 8,
   },
   activeTabText: {
-    color: '#ff6700',
+    color: COLORS.orange,
     fontWeight: 'bold',
   },
   inputGroup: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     height: 50,
     borderWidth: 0,
-    borderColor: '#e0e0e0',
+    borderColor: COLORS.bottomBorder,
     borderRadius: 4,
   },
   checkboxRow: {
@@ -108,18 +108,18 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 2,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS.grayD8,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 6,
   },
   checkboxChecked: {
-    backgroundColor: '#ff6700',
-    borderColor: '#ff6700',
+    backgroundColor: COLORS.orange,
+    borderColor: COLORS.orange,
   },
   checkboxLabel: {
     fontSize: 14,
-    color: '#666',
+    color: COLORS.text.secondary,
   },
   policyContainer: {
     marginTop: 10,
@@ -127,14 +127,14 @@ const styles = StyleSheet.create({
   },
   policyText: {
     fontSize: 12,
-    color: '#666',
+    color: COLORS.text.secondary,
     flexShrink: 1,
   },
   policyLink: {
-    color: '#ff6700',
+    color: COLORS.orange,
   },
   loginButton: {
-    backgroundColor: '#ff6700',
+    backgroundColor: COLORS.orange,
     borderRadius: 4,
     height: 50,
     justifyContent: 'center',
@@ -156,11 +156,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   forgotPasswordText: {
-    color: '#ff6700',
+    color: COLORS.orange,
     fontSize: 14,
   },
   smsLoginText: {
-    color: '#ff6700',
+    color: COLORS.orange,
     fontSize: 14,
   },
   qrcodeContainer: {
@@ -171,13 +171,13 @@ const styles = StyleSheet.create({
   qrcodeText: {
     marginTop: 20,
     textAlign: 'center',
-    color: '#333',
+    color: COLORS.text.primary,
     fontWeight: '500',
   },
   qrcodeSubText: {
     marginTop: 10,
     textAlign: 'center',
-    color: '#999',
+    color: COLORS.gray,
     fontSize: 12,
   },
   footer: {
@@ -187,11 +187,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   footerText: {
-    color: '#666',
+    color: COLORS.text.secondary,
     fontSize: 14,
   },
   registerText: {
-    color: '#ff6700',
+    color: COLORS.orange,
     marginLeft: 4,
     fontSize: 14,
   },
@@ -207,10 +207,10 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: COLORS.bottomBorder,
   },
   dividerText: {
-    color: '#999',
+    color: COLORS.gray,
     paddingHorizontal: 15,
     fontSize: 14,
   },
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: COLORS.bottomBorder,
   },
 });
 
