@@ -6,21 +6,63 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: COLORS.black,
+  },
+  safeArea: {
+    flex: 1,
+    width: '100%',
   },
   gradientBackground: {
     flex: 1,
     backgroundColor: COLORS.orange,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  backButton: {
+    padding: 5,
+  },
+  helpButton: {
+    padding: 5,
+  },
+  helpText: {
+    color: COLORS.white,
+    fontSize: 16,
+  },
   formContainer: {
     padding: 20,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
   },
   logoContainer: {
     alignItems: 'center',
     marginBottom: 40,
+    marginTop: 40,
+  },
+  logoBox: {
+    width: 80,
+    height: 80,
+    backgroundColor: '#FF6900',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logoText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: COLORS.white,
+    textTransform: 'lowercase',
+  },
+  title: {
+    fontSize: 22,
+    color: COLORS.white,
+    marginTop: 5,
   },
   logo: {
     fontSize: 60,
@@ -39,6 +81,13 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     marginTop: 5,
     opacity: 0.9,
+  },
+  inputContainer: {
+    width: '100%',
+    marginBottom: 20,
+  },
+  input: {
+    marginBottom: 15,
   },
   card: {
     backgroundColor: COLORS.white,
@@ -89,23 +138,26 @@ const styles = StyleSheet.create({
   policyContainer: {
     marginTop: 10,
     marginBottom: 20,
+    width: '100%',
   },
   policyText: {
     fontSize: 12,
-    color: COLORS.text.secondary,
+    color: '#888',
     flexShrink: 1,
   },
   policyLink: {
-    color: COLORS.orange,
+    color: '#888',
+    textDecorationLine: 'underline',
   },
   loginButton: {
-    backgroundColor: COLORS.orange,
-    borderRadius: 4,
+    backgroundColor: '#2196F3',
+    borderRadius: 25,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
     marginBottom: 20,
+    width: '100%',
   },
   loginButtonDisabled: {
     opacity: 0.6,
@@ -117,6 +169,21 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     color: COLORS.orange,
+    fontSize: 14,
+  },
+  bottomLinks: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  bottomLinkText: {
+    color: '#888',
+    fontSize: 14,
+    paddingHorizontal: 10,
+  },
+  separator: {
+    color: '#888',
     fontSize: 14,
   },
   footer: {
@@ -134,6 +201,10 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     fontSize: 14,
   },
+  otherLoginSection: {
+    width: '100%',
+    marginTop: 20,
+  },
   otherLoginOptions: {
     marginTop: 10,
   },
@@ -146,10 +217,10 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: COLORS.bottomBorder,
+    backgroundColor: '#333',
   },
   dividerText: {
-    color: COLORS.gray,
+    color: '#888',
     paddingHorizontal: 15,
     fontSize: 14,
   },
@@ -162,20 +233,33 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: COLORS.white,
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 15,
-    shadowColor: COLORS.shadow,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
+  },
+  roleSelector: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 15,
+  },
+  roleButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: COLORS.bottomBorder,
+  },
+  roleButtonActive: {
+    backgroundColor: COLORS.orange,
+    borderColor: COLORS.orange,
+  },
+  roleButtonText: {
+    fontSize: 14,
+    color: COLORS.text.secondary,
+  },
+  roleButtonTextActive: {
+    color: COLORS.white,
   },
 });
 
