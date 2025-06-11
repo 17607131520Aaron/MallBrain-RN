@@ -30,7 +30,13 @@ const IGNORED_FILES = ['index.ts', 'index.js', 'GlobalComponents.tsx'];
 function getComponentDirs() {
   return fs
     .readdirSync(COMPONENTS_DIR, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory() && !IGNORED_DIRS.includes(dirent.name))
+    .filter((dirent) => {
+      // 排除目录
+      if (!dirent.isDirectory()) return false;
+      // 排除忽略的目录
+      if (IGNORED_DIRS.includes(dirent.name)) return false;
+      return true;
+    })
     .map((dirent) => dirent.name);
 }
 
