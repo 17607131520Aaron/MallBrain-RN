@@ -6,7 +6,6 @@ import com.facebook.flipper.android.utils.FlipperUtils
 import com.facebook.flipper.core.FlipperClient
 import com.facebook.flipper.plugins.crashreporter.CrashReporterPlugin
 import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
-import com.facebook.flipper.plugins.fresco.FrescoFlipperPlugin
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
@@ -39,16 +38,6 @@ object ReactNativeFlipper {
         }
         client.addPlugin(networkFlipperPlugin)
 
-        // For Fresco plugin
-        if (reactInstanceManager.currentReactContext == null) {
-            reactInstanceManager.addReactInstanceEventListener(object : ReactInstanceManager.ReactInstanceEventListener {
-                override fun onReactContextInitialized(reactContext: ReactContext) {
-                    reactInstanceManager.removeReactInstanceEventListener(this)
-                    client.start()
-                }
-            })
-        } else {
-            client.start()
-        }
+        client.start()
     }
 }

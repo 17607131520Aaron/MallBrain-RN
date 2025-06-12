@@ -120,9 +120,10 @@ dependencies {
     // Flipper dependencies
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}")
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
-
-    if (enableHermes.toBoolean()) {
-        debugImplementation("com.facebook.flipper:flipper-hermes-plugin:${FLIPPER_VERSION}")
-    }
+    // 移除可能不兼容的插件
+    // debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
+    // 移除可能不兼容的插件
+    // if (hermesEnabled.toBoolean()) {
+    //     debugImplementation("com.facebook.flipper:flipper-hermes-plugin:${FLIPPER_VERSION}")
+    // }
 }

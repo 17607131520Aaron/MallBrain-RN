@@ -11,7 +11,6 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import com.mynewproject.ReactNativeFlipper
 
 class MainApplication : Application(), ReactApplication {
 
@@ -52,7 +51,7 @@ class MainApplication : Application(), ReactApplication {
     }
     // 初始化Flipper并设置自定义端口
     if (BuildConfig.DEBUG) {
-      ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
+      com.mynewproject.ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
     }
   }
 }
