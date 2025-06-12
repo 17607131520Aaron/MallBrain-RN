@@ -35,7 +35,7 @@ class MainApplication : Application(), ReactApplication {
           return super.getJSBundleFile()
         }
 
-        override fun getBundleAssetName(): String {
+        override fun getBundleAssetName(): String? {
           return super.getBundleAssetName()
         }
       }
