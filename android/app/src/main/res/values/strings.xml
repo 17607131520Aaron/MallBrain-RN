@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">智慧商城</string>
-    <string name="metro_port">8088</string>
+    <string name="metro_port">8081</string>
 </resources>
