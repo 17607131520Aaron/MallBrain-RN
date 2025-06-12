@@ -44,13 +44,16 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
+
     SoLoader.init(this, OpenSourceMergedSoMapping)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       load()
     }
+
     // 初始化Flipper并设置自定义端口
     if (BuildConfig.DEBUG) {
+      // 使用完全限定名称来引用ReactNativeFlipper
       com.mynewproject.ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
     }
   }

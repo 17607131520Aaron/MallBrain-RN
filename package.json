@@ -52,6 +52,7 @@
     "react-native-device-info": "^14.0.4",
     "react-native-fast-image": "^8.6.3",
     "react-native-fetch-api": "^3.0.0",
+    "react-native-flipper": "^0.273.0",
     "react-native-fs": "^2.20.0",
     "react-native-get-random-values": "^1.11.0",
     "react-native-image-crop-picker": "^0.50.1",

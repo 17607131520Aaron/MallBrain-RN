@@ -4,14 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// import { Components } from '~/components';
 import Input from '~/components/Input';
 import { COLORS } from '~/constants/colors';
 import { useAuth } from '~/contexts/AuthContext';
 
 import styles from './index.style';
-
-// const { Input } = Components;
 
 const Login: React.FC = () => {
   const { login, isLoading } = useAuth();

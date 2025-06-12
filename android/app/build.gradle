@@ -117,13 +117,10 @@ dependencies {
         implementation jscFlavor
     }
 
-    // Flipper dependencies
+    // Flipper dependencies（只保留主包和network插件）
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}")
-    // 移除可能不兼容的插件
-    // debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
-    // 移除可能不兼容的插件
-    // if (hermesEnabled.toBoolean()) {
-    //     debugImplementation("com.facebook.flipper:flipper-hermes-plugin:${FLIPPER_VERSION}")
-    // }
+
+    // LeakCanary依赖
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 }
