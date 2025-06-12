@@ -14,7 +14,7 @@ const extraNodeModules = {
 
 const config = {
   server: {
-    port: 8081,
+    port: 8088,
   },
   resolver: {
     sourceExts: ['js', 'ts', 'tsx', 'svg', 'json'],

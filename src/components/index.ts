@@ -1,5 +1,3 @@
-// 自动生成的组件索引文件，请勿手动修改
-// 由scripts/generate_components.js生成
 
 import Button from './Button';
 import Input from './Input';
@@ -44,6 +42,3 @@ export const Components = componentRegistry;
 
 // 自动导出所有组件
 export { Button, Input, EnhancedToast as Toast };
-
-// 如需添加新组件，请在src/components目录下创建新的组件目录
-// 然后运行 yarn generate:components 命令更新此文件

@@ -2,7 +2,6 @@
   "name": "my-new-project",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -15,8 +14,7 @@
     "build": "python3 scripts/build_app.py",
     "build:apk": "python3 scripts/build_app.py",
     "build:aab": "python3 scripts/build_app.py --aab",
-    "build:debug": "python3 scripts/build_app.py --debug",
-    "generate:components": "node scripts/generate_components.js && yarn format"
+    "build:debug": "python3 scripts/build_app.py --debug"
   },
   "dependencies": {
     "@native-html/table-plugin": "^5.3.1",
